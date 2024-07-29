@@ -1,0 +1,67 @@
+<div class="container mt-4">
+    <form [formGroup]="form">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" formControlName="name" class="form-control" id="name" placeholder="Nome"
+                        [ngClass]="{'is-invalid':submitted && formControl['name'].errors 
+                    || formControl['name'].touched && formControl['name'].errors , 
+                    'is-valid': formControl['name'].valid}">
+
+                    <div *ngIf="submitted && formControl['name'].errors 
+                    || formControl['name'].touched && formControl['name'].errors" class="invalid-field">
+                        <div *ngIf="formControl['name'].errors['required']">Nome is required!</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" formControlName="email" class="form-control" id="email" placeholder="Email"
+                        [ngClass]="{'is-invalid':submitted && formControl['email'].errors 
+                    || formControl['email'].touched && formControl['email'].errors , 
+                    'is-valid': formControl['email'].valid}">
+
+                    <div *ngIf="submitted && formControl['email'].errors 
+                    || formControl['email'].touched && formControl['email'].errors" class="invalid-field">
+                        <div *ngIf="formControl['email'].errors['required']">Email is required!</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label for="phone">Telefone</label>
+                    <input type="text" formControlName="phone" class="form-control" id="phone" placeholder="(XX) XXXXX-XXXX"
+                        [ngClass]="{'is-invalid':submitted && formControl['phone'].errors 
+                    || formControl['phone'].touched && formControl['phone'].errors , 
+                    'is-valid': formControl['phone'].valid}">
+
+                    <div *ngIf="submitted && formControl['phone'].errors 
+                    || formControl['phone'].touched && formControl['phone'].errors" class="invalid-field">
+                        <div *ngIf="formControl['phone'].errors['required']">Telefone is required!</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label for="tipo">Tipo</label>
+                    <select class="form-control" id="type-person" formControlName="typeperson" [ngClass]="{'is-invalid': submitted && formControl['typeperson'].errors 
+                    || formControl['typeperson'].touched && formControl['typeperson'].errors, 
+                    'is-valid': formControl['typeperson'].valid}">
+                        <ng-container *ngFor="let item of typePersons; let i = index">
+                            <option [value]="item.id">{{item.description}}</option>
+                        </ng-container>
+                    </select>
+                    <div *ngIf="submitted && formControl['typeperson'].errors || formControl['typeperson'].touched && formControl['typeperson'].errors"
+                        class="invalid-field">
+                        <div *ngIf="formControl['typeperson'].errors['required']">Tipo is required!</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <button type="submit" class="btn btn-primary" (click)="onSaveAndUpdate()">Salvar</button>
+            </div>
+        </div>
+    </form>
+</div>
